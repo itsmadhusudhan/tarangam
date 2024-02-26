@@ -3,7 +3,6 @@ package com.shreekaram.tarangam.navigation.screens
 import android.annotation.SuppressLint
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -15,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.shreekaram.tarangam.composables.BottomNavigationBar
+import com.shreekaram.tarangam.modules.music.presentation.MusicListPage
 import com.shreekaram.tarangam.navigation.Routes
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -23,7 +23,7 @@ fun HomeScreen(navController: NavHostController) {
     val homeNavController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(navController = homeNavController) }
-    ) { _ ->
+    ) { innerPadding ->
         NavHost(
             navController = homeNavController,
             startDestination = Routes.MusicList.id,
@@ -33,18 +33,9 @@ fun HomeScreen(navController: NavHostController) {
             exitTransition = { ExitTransition.None }
         ) {
             composable(Routes.MusicList.id) {
-                Scaffold(
-                ) { _ ->
-                    Column(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        Text(
-                            text = "Music List",
-                            textAlign = TextAlign.Center,
-                        )
-
-                    }
-                }
+                MusicListPage(
+                    padding = innerPadding
+                )
             }
 
             composable(Routes.Search.id) {

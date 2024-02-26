@@ -3,6 +3,7 @@ package com.shreekaram.tarangam.di
 import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
+import com.shreekaram.tarangam.modules.music.data.utils.MusicHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +35,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCacheDir(@ApplicationContext context: Context): String {
-        return context.cacheDir.absolutePath
+    fun provideMusicHelper(@ApplicationContext context: Context): MusicHelper {
+        return MusicHelper(context.cacheDir.absolutePath)
     }
 }

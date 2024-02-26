@@ -15,8 +15,10 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -49,7 +51,11 @@ fun BottomNavigationBar(navController: NavController) {
                 .height(70.dp)
                 .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                 .fillMaxWidth()
-                .background(color = MaterialTheme.colorScheme.surfaceContainer)
+                .background(
+                    color = MaterialTheme.colorScheme.surfaceColorAtElevation(
+                        elevation = NavigationBarDefaults.Elevation,
+                    )
+                )
                 .clickable {
                     navController.navigate(Routes.Search.id)
                 }
